@@ -1,0 +1,35 @@
+<cn.bassy.widget.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/boundview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.bassy.demo.MainActivity" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Dialog是提供搜索的控件之一，还有一个是上次小例子给出的searchView，关于SearchView的东西后面会说到。本次先从Search Dialog说起，让大家慢慢理解android中搜索的控件的机制，逐渐引出搜索信息传递和搜索配置的知识，铺垫到最后再给大家说searchview的话，大家就能很容易理解。 B：Android系统自己负责处理search dialog上所有的事件，当用户点击查询按钮，系统会把这个查询请求传输到我们自己定义的的searchable activity，这个searchable activity处理真正的查询。当用户在输入的时候，search dialog还能提供搜索建议。（这点下文会有提及）C：而SearchView其实就是一个view，你自然可以把它放在你的布局的任何地方。（但一般我们还是将其放在屏幕的上方）" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Dialog是提供搜索的控件之一，还有一个是上次小例子给出的searchView，关于SearchView的东西后面会说到。本次先从Search Dialog说起，让大家慢慢理解android中搜索的控件的机制，逐渐引出搜索信息传递和搜索配置的知识，铺垫到最后再给大家说searchview的话，大家就能很容易理解。 B：Android系统自己负责处理search dialog上所有的事件，当用户点击查询按钮，系统会把这个查询请求传输到我们自己定义的的searchable activity，这个searchable activity处理真正的查询。当用户在输入的时候，search dialog还能提供搜索建议。（这点下文会有提及）C：而SearchView其实就是一个view，你自然可以把它放在你的布局的任何地方。（但一般我们还是将其放在屏幕的上方）" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Dialog是提供搜索的控件之一，还有一个是上次小例子给出的searchView，关于SearchView的东西后面会说到。本次先从Search Dialog说起，让大家慢慢理解android中搜索的控件的机制，逐渐引出搜索信息传递和搜索配置的知识，铺垫到最后再给大家说searchview的话，大家就能很容易理解。 B：Android系统自己负责处理search dialog上所有的事件，当用户点击查询按钮，系统会把这个查询请求传输到我们自己定义的的searchable activity，这个searchable activity处理真正的查询。当用户在输入的时候，search dialog还能提供搜索建议。（这点下文会有提及）C：而SearchView其实就是一个view，你自然可以把它放在你的布局的任何地方。（但一般我们还是将其放在屏幕的上方）" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录" />
+    </LinearLayout>
+
+</cn.bassy.widget.PullToRefreshScrollView>
