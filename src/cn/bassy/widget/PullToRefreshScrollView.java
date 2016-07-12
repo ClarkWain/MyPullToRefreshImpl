@@ -69,23 +69,34 @@ public class PullToRefreshScrollView extends LinearLayout {
 
 	LayoutInflater mLayoutInflater;
 
+	//下拉刷新的头部布局
 	LinearLayout mHeaderLayout;
+	//这是头部布局里面的一个View
 	View mHeaderView;
-	int mHeaderViewHeight = 45; // DIP
+	//头部布局的高度，单位是DIP
+	int mHeaderViewHeight = 45;
 
+	//这个是内容布局
 	ScrollView mContentLayout;
 
+	//记录触摸按下位置 
 	float mTouchDownY;
+	//记录当前内容布局的滚动位置
 	int mContentStartScrollY;
+	//记录当前整体布局的滚动位置
 	int mMainStartScrollY;
-	boolean mIsTouchDown = false;
 
+	//下拉偏移量与展示头部布局高度之间的比率
 	float mPullRatio = 2.5f;
 
+	//反弹效果
 	Scroller mScroller;
+	//下拉图标动画
 	Animation mPullDownAnimation;
+	//进度条动画
 	Animation mProgressAnimation;
 
+	//下拉刷新接口
 	OnRefreshListener mOnRefreshListener;
 
 	public PullToRefreshScrollView(Context context) {
@@ -103,8 +114,9 @@ public class PullToRefreshScrollView extends LinearLayout {
 		init(context);
 	}
 
+	//初始化
 	private void init(Context context) {
-		setClickable(true);
+		setClickable(true);//设置为可点击，否则无法滚动
 
 		mLayoutInflater = LayoutInflater.from(context);
 		mHeaderLayout = createHeaderLayout(context);
@@ -128,7 +140,7 @@ public class PullToRefreshScrollView extends LinearLayout {
 	private LinearLayout createHeaderLayout(Context context) {
 		int height = (int) (getResources().getDisplayMetrics().heightPixels / mPullRatio);
 		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, height);
-		params.topMargin = -params.height;
+		params.topMargin = -params.height;//这里用了负数，使View强制向上偏移
 
 		LinearLayout ll = new LinearLayout(context);
 		ll.setLayoutParams(params);
