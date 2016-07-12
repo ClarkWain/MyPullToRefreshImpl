@@ -23,7 +23,7 @@ import cn.bassy.demo.R;
  * 下拉刷新组件
  * 
  * @author 韦天鹏
- *
+ * @version 1	2016-7-12
  */
 public class PullToRefreshScrollView extends LinearLayout {
 
@@ -180,7 +180,7 @@ public class PullToRefreshScrollView extends LinearLayout {
 
 	@Override
 	protected void onDetachedFromWindow() {
-		mProgressAnimation.cancel();
+		mProgressAnimation.cancel();//停止动画
 		super.onDetachedFromWindow();
 	}
 
@@ -196,9 +196,7 @@ public class PullToRefreshScrollView extends LinearLayout {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 
-		int actionMask = ev.getAction() & MotionEvent.ACTION_MASK;
-
-		switch (actionMask) {
+		switch (ev.getActionMasked()) {
 		case MotionEvent.ACTION_DOWN: {
 			mTouchDownY = ev.getY();
 			mMainStartScrollY = getScrollY();
