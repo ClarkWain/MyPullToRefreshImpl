@@ -180,15 +180,18 @@ public class PullToRefreshScrollView extends LinearLayout {
 
 	@Override
 	protected void onDetachedFromWindow() {
-		mProgressAnimation.cancel();//停止动画
+		//停止动画
+		mProgressAnimation.cancel();
 		super.onDetachedFromWindow();
 	}
 
 	@Override
 	public void addView(View child, int index, android.view.ViewGroup.LayoutParams params) {
 		if (child == mHeaderLayout || child == mContentLayout) {
+			//对于头部布局，直接交给MainLayout(即本View）处理
 			super.addView(child, index, params);
 		} else {
+			//其它情况，交给ContentLayout处理
 			mContentLayout.addView(child, index, params);
 		}
 	}
@@ -198,13 +201,13 @@ public class PullToRefreshScrollView extends LinearLayout {
 
 		switch (ev.getActionMasked()) {
 		case MotionEvent.ACTION_DOWN: {
+			//记录第一个手指的按下位置即可
 			mTouchDownY = ev.getY();
 			mMainStartScrollY = getScrollY();
 			mContentStartScrollY = mContentLayout.getScrollY();
 			break;
 		}
 		case MotionEvent.ACTION_MOVE: {
-
 			float deltaY = ev.getY() - mTouchDownY;
 
 			if (deltaY > 0) {
@@ -223,6 +226,7 @@ public class PullToRefreshScrollView extends LinearLayout {
 
 			if (mPullAction == PullAction.DOWN && !canPullDown()) {
 
+				//重新记录位置
 				Log.i(TAG, String.format("canPullDown=true"));
 				mTouchDownY = ev.getY();
 				mMainStartScrollY = getScrollY();
@@ -230,6 +234,7 @@ public class PullToRefreshScrollView extends LinearLayout {
 
 			} else if (mPullAction == PullAction.DOWN) {
 
+				//滚动MainLayout，使头部布局显示出来
 				Log.i(TAG, String.format("canPullDown=false"));
 				int newScrollY = (int) (mMainStartScrollY - (deltaY - mContentStartScrollY) / mPullRatio);
 				mScroller.abortAnimation();
@@ -242,21 +247,20 @@ public class PullToRefreshScrollView extends LinearLayout {
 		case MotionEvent.ACTION_UP: {
 
 			if (mPullDownState == PullState.RELEASE_TO_REFRESH) {
+				//进入正在刷新状态
 				changePullDownState(PullState.REFRESHING);
-				animateTo(getScrollX(), getTop() - mHeaderViewHeight);
+				smoothScrollTo(getScrollX(), getTop() - mHeaderViewHeight);
 			} else if (mPullDownState == PullState.REFRESHING) {
-				animateTo(getScrollX(), getTop() - mHeaderViewHeight);
+				smoothScrollTo(getScrollX(), getTop() - mHeaderViewHeight);
 			} else {
-				animateTo(getScrollX(), getTop());
+				smoothScrollTo(getScrollX(), getTop());
 			}
 			break;
 		}
 		default:
 		}
 
-		boolean ret = super.dispatchTouchEvent(ev);
-		Log.d(TAG, "super.dispatchTouchEvent(ev)=" + ret);
-		return ret;
+		return super.dispatchTouchEvent(ev);
 	}
 
 	/** 当前状态下，是否允许下拉刷新 */
@@ -276,7 +280,12 @@ public class PullToRefreshScrollView extends LinearLayout {
 		return getScrollY() > -mHeaderViewHeight ? PullState.PULL_DOWN_TO_REFRESH : PullState.RELEASE_TO_REFRESH;
 	}
 
-	private void animateTo(int toX, int toY) {
+	/**
+	 * 平滑滚动到指定位置
+	 * @param toX	目标水平位置
+	 * @param toY	目标垂直位置
+	 */
+	private void smoothScrollTo(int toX, int toY) {
 
 		if (mScroller != null) {
 			mScroller.abortAnimation();
@@ -287,15 +296,17 @@ public class PullToRefreshScrollView extends LinearLayout {
 		int fromY = getScrollY();
 
 		mScroller.startScroll(fromX, fromY, toX - fromX, toY - fromY, 300);
-		invalidate();// 要求重绘（即调用draw，一该方法会调用computeScroll()
+		invalidate();//要求重绘（即调用draw，该方法会调用computeScroll）
 	}
 
 	@Override
 	public void computeScroll() {
 
 		if (mScroller.computeScrollOffset()) {
+
 			scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
-			invalidate();// 要求重绘（即调用draw，一该方法会调用computeScroll()
+			invalidate();//要求重绘（即调用draw，该方法会调用computeScroll）
+
 		} else if (mScroller.isFinished()) {
 			// 动画结束
 			if (mPullDownState == PullState.COMPLETED && getScrollY() == getTop()) {
@@ -306,14 +317,19 @@ public class PullToRefreshScrollView extends LinearLayout {
 		}
 	}
 
-	private void changePullDownState(PullState state) {
+	/**
+	 * 更改下拉刷新的状态
+	 * @param state	指定状态
+	 * @return 返回是否更改成功
+	 */
+	private boolean changePullDownState(PullState state) {
 		if (mPullDownState == state) {
-			return;
+			return false;
 		}
 
 		if ((mPullDownState == PullState.COMPLETED | mPullDownState == PullState.REFRESHING)
 				&& (state == PullState.PULL_DOWN_TO_REFRESH | state == PullState.RELEASE_TO_REFRESH)) {
-			return;
+			return false;
 		}
 
 		updateHeaderView(mPullDownState, state);
@@ -337,14 +353,21 @@ public class PullToRefreshScrollView extends LinearLayout {
 				@Override
 				public void run() {
 					Log.e(TAG, "post delay start");
-					animateTo(0, getTop());
+					smoothScrollTo(0, getTop());
 				}
 			}, 500);
 			break;
 		default:
 		}
+		return true;
 	}
 
+	/** 
+	 * 更新头部布局的状态
+	 * 
+	 * @param oldstate	旧的状态
+	 * @param newstate	新的状态
+	 */
 	private void updateHeaderView(PullState oldstate, PullState newstate) {
 
 		TextView tv = (TextView) findViewById(R.id.hreader_tv_msg);
@@ -398,19 +421,24 @@ public class PullToRefreshScrollView extends LinearLayout {
 		}
 	}
 
+	/** 通知该下拉刷新组件，刷新工作已经完成了*/
 	public void onRefreshCompleted() {
 		changePullDownState(PullState.COMPLETED);
 	}
 
+	/** 获取下拉刷新回调监听器*/
 	public OnRefreshListener getOnRefreshListener() {
 		return mOnRefreshListener;
 	}
 
+	/** 设置下拉刷新回调监听器*/
 	public void setOnRefreshListener(OnRefreshListener listener) {
 		this.mOnRefreshListener = listener;
 	}
 
+	/** 下拉刷新回调监听器 */
 	public interface OnRefreshListener {
+		/** 当进入刷新状态的时候，该方法被调用*/
 		public void onRefreshing();
 	}
 }
