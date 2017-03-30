@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PullToRefreshScrollView">
+        <attr name="ptrHeaderBackground" format="color|reference" />
+        <attr name="ptrHeaderPullToRefreshText" format="string|reference" />
+        <attr name="ptrHeaderReleaseToRefreshText" format="string|reference" />
+        <attr name="ptrHeaderRefreshingText" format="string|reference" />
+        <attr name="ptrHeaderCompletedText" format="string|reference" />
+        <attr name="ptrHeaderArrowDrawable" format="color|reference" />
+        <attr name="ptrHeaderProgressDrawable" format="color|reference" />
+        <attr name="ptrHeaderCompletedDrawable" format="color|reference" />
+    </declare-styleable>
+</resources>

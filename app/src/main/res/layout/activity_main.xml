@@ -1,35 +1,52 @@
-<cn.bassy.widget.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.bassy.widget.PullToRefreshScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/boundview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cn.bassy.demo.MainActivity" >
+    tools:context="cn.bassy.demo.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="16dip">
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search Dialog是提供搜索的控件之一，还有一个是上次小例子给出的searchView，关于SearchView的东西后面会说到。本次先从Search Dialog说起，让大家慢慢理解android中搜索的控件的机制，逐渐引出搜索信息传递和搜索配置的知识，铺垫到最后再给大家说searchview的话，大家就能很容易理解。 B：Android系统自己负责处理search dialog上所有的事件，当用户点击查询按钮，系统会把这个查询请求传输到我们自己定义的的searchable activity，这个searchable activity处理真正的查询。当用户在输入的时候，search dialog还能提供搜索建议。（这点下文会有提及）C：而SearchView其实就是一个view，你自然可以把它放在你的布局的任何地方。（但一般我们还是将其放在屏幕的上方）" />
+            android:text="第1集\n\n　　东汉末年，董卓入京篡政，以大司徒王允为首的士大夫痛心疾首。身为校尉的曹操与董卓貌合神离，也早有除贼之心。在王允的寿宴上，曹操不请自到，口出狂言被王允轰出家门。宴会后，王允亲自把曹操引入内室，曹操讲述了自己的刺董计划，王允激动地将祖传的七星宝刀赠与曹操，以助其一臂之力。翌日，曹操行刺的刹那被董卓察觉，曹操便假说为董卓献刀。就在董卓疑惑之际，曹操起身告辞，随之闯关逃亡。董卓事后发觉曹操献刀是假，行刺是真，便令吕布火速捉拿曹操。"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search Dialog是提供搜索的控件之一，还有一个是上次小例子给出的searchView，关于SearchView的东西后面会说到。本次先从Search Dialog说起，让大家慢慢理解android中搜索的控件的机制，逐渐引出搜索信息传递和搜索配置的知识，铺垫到最后再给大家说searchview的话，大家就能很容易理解。 B：Android系统自己负责处理search dialog上所有的事件，当用户点击查询按钮，系统会把这个查询请求传输到我们自己定义的的searchable activity，这个searchable activity处理真正的查询。当用户在输入的时候，search dialog还能提供搜索建议。（这点下文会有提及）C：而SearchView其实就是一个view，你自然可以把它放在你的布局的任何地方。（但一般我们还是将其放在屏幕的上方）" />
+            android:text="\n第2集\n\n　　曹操刺董失败后，王允自感大祸将至，在拔剑自刎之际，被义女貂蝉救下。貂蝉自述凄惨身世，劝义父忍辱负重以谋反董大业，王允深以为然。董卓带兵冲进王府，质问王允是否与曹操勾结。王允沉着应对，方才化险为夷。曹操逃亡至中牟县，被认出后被捕。孰料县令陈宫深明大义，毅然抛家舍业跟随曹操共谋义举。"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search Dialog是提供搜索的控件之一，还有一个是上次小例子给出的searchView，关于SearchView的东西后面会说到。本次先从Search Dialog说起，让大家慢慢理解android中搜索的控件的机制，逐渐引出搜索信息传递和搜索配置的知识，铺垫到最后再给大家说searchview的话，大家就能很容易理解。 B：Android系统自己负责处理search dialog上所有的事件，当用户点击查询按钮，系统会把这个查询请求传输到我们自己定义的的searchable activity，这个searchable activity处理真正的查询。当用户在输入的时候，search dialog还能提供搜索建议。（这点下文会有提及）C：而SearchView其实就是一个view，你自然可以把它放在你的布局的任何地方。（但一般我们还是将其放在屏幕的上方）" />
+            android:text="\n第3集\n\n　　曹操与陈宫都上了沿途郡县的通缉令，前途叵测。傍晚，二人投宿山林深处的一处宅院，主人正是曹操父亲的结义兄弟吕伯奢。吕公对曹操二人的到来热情高涨，坚持冒险出山换酒招待他们。吕公离去不久，曹操与陈宫突然听到门外传来家仆吆喝、磨刀之声。曹操断定是吕伯奢想图财害命。二人冲出斩杀所有家仆，方才发现误杀好人。于是二人仓皇奔逃，路遇换酒归来的吕公。曹操出人意料地斩杀老人，陈宫极为震惊，认为曹操不仁不义，终于离他而去。回乡后的曹操招兵买马，响应袁绍的讨董义举。十八镇诸侯齐聚一堂，刘关张三兄弟受到冷落与嘲讽。而此时，董卓属将华雄已临城下。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n第4集\n\n　　就在曹操在大堂布置剿董方略的时候，华雄已斩杀盟军两员大将。就在大家束手无策的时候，关羽慨然应战。关羽温酒斩华雄，令众诸侯刮目相看。袁绍大喜，颁令刘备为增设的第十九镇统兵将军。然而，袁绍之弟袁术对已经许诺给刘备的兵马粮饷百般推脱，令三兄弟沮丧。帐外，曹操率曹仁带十余车粮草酒肉慰劳刘备。宴席之上，曹刘对话显示出了二人对天下、人生的巨大分歧。此时，袁绍在营帐急怒攻心，原来盟军先锋孙坚正奉命猛攻洛阳，而粮草总督袁术却暗中断了孙坚的粮饷兵援。"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\n第5集\n\n　　袁术面对袁绍的斥问，道出了自己的“深谋远虑”。言未尽，败报已至：孙坚折兵损将，孤军大败。董卓亲率西凉大军前来征讨，董军大将吕布接连斩杀了数员盟军大将，一时无人敢应战。刘备大喝一声单挑吕布，关张二人也相继加入，三英战吕布。各路诸侯趁势麾军杀向董卓。京都洛阳，董卓欲挟天子迁都长安，百官噤若寒蝉，恐惧无言。与此同时，曹操与孙坚力劝袁绍率军追杀董卓，一举歼灭巨贼。"/>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="登录" />
+            android:layout_marginBottom="20dip"
+            android:layout_marginTop="20dip"
+
+            android:onClick="onButtonClick"
+            android:text="查看其它"/>
     </LinearLayout>
 
 </cn.bassy.widget.PullToRefreshScrollView>
