@@ -12,31 +12,35 @@ import cn.bassy.widget.PullToRefreshScrollView.OnRefreshListener;
 
 public class MainActivity extends Activity {
 
-	PullToRefreshScrollView mBoundView;
+    private PullToRefreshScrollView mBoundView;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-		mBoundView = (PullToRefreshScrollView) findViewById(R.id.boundview);
-		mBoundView.setOnRefreshListener(new OnRefreshListener() {
+        mBoundView = (PullToRefreshScrollView) findViewById(R.id.boundview);
+        mBoundView.setOnRefreshListener(new OnRefreshListener() {
 
-			@Override
-			public void onRefreshing() {
-				new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void onRefreshing() {
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 
-					@Override
-					public void run() {
-						mBoundView.onRefreshCompleted();
-					}
-				}, 1500);
-			}
-		});
-	}
+                    @Override
+                    public void run() {
+                        mBoundView.onRefreshCompleted();
+                    }
+                }, 1500);
+            }
+        });
+    }
 
-	public void onButtonClick(View v){
+    public void onButtonClick(View v) {
         startActivity(new Intent(this, DetailActivity.class));
+    }
+
+    public void onButton2Click(View v) {
+        startActivity(new Intent(this, BounceActivity.class));
     }
 
 }

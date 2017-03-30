@@ -44,9 +44,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dip"
             android:layout_marginTop="20dip"
-
             android:onClick="onButtonClick"
             android:text="查看其它"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"
+            android:layout_marginTop="20dip"
+            android:onClick="onButton2Click"
+            android:text="去BounceActivity"/>
     </LinearLayout>
 
 </cn.bassy.widget.PullToRefreshScrollView>
